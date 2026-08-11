@@ -1,9 +1,10 @@
 import React from 'react'
-import { useRef } from "react";
-import Header from './components/Header';
+import { useRef, useState, useEffect } from "react";import Header from './components/Header';
 import Footer from './components/Footer';
 import Student from './components/Student';
 import Tuwaiq from './components/Tuwaiq';
+import ProductsApi from './components/product.api';
+import APIExchange from './components/APIExchange';
 
 function App() {
 
@@ -35,6 +36,20 @@ const studentlist2=[
  ]
 
 
+const [counter, setCounter] = useState(0);
+
+const handleCounter = () => {
+  setCounter(counter + 1);
+  console.log(counter);
+};
+
+
+useEffect(() => {
+  console.log("Effect is updated");
+},[counter]);
+
+
+
   return (
     <>
 
@@ -48,12 +63,9 @@ const studentlist2=[
 
   <Tuwaiq 
           student={studentlist2}
-                   msg={Message} 
-                   />
+                   msg={Message} />
 
-        {/* <Footer /> */}
-
-      <div>
+    <div>
       <Student name="Ahmed" />
       <Student name="Ali" />
       <Student name="Sara" />
@@ -62,7 +74,7 @@ const studentlist2=[
 <div className="m-3 text-center">
   <img
     ref={imgRef}
-    src="public/image/Thinks.jpg"
+    src="/Image/Thinks.jpg"
     alt="صورة"
     style={{ width: "200px" }}
   />
@@ -78,6 +90,19 @@ const studentlist2=[
     onChange={handleResize}
   />
 </div>
+
+<button className="btn btn-primary m-3" onClick={handleCounter}>Increment</button>
+<p>{counter}</p>
+
+
+<br /> <br />
+
+<APIExchange />
+<br /> <br /> <br /> <br />
+<ProductsApi />
+
+
+         {/*<Footer />*/} 
 
   </>
   )
